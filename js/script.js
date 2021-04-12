@@ -5,6 +5,21 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 $(document).ready(function() {
     
+    //quanti numeri devo generare
+    var size = 5;
+
+    //array per contenere i numeri random
+    var numberList = [];
+
+    while (numberList.length < size) {
+        var number = getRandomNumber (1, 100);
+
+        if (! numberList.includes(number)) {
+            numberList.push(number);
+        }
+    }
+
+    console.log(numberList);
 
 
     //end doc ready
