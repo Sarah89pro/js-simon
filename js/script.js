@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 
     //Countdown 30 secondi
-    var seconds = 30; //setInterval è in ms, quindi in background 30*1000
+    var seconds = 3; //setInterval è in ms, quindi in background 30*1000
 
     var interval = setInterval(function() {
 
@@ -52,11 +52,18 @@ $(document).ready(function() {
             clearInterval(interval);
             //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
             for (var i = 1; i <= size; i++) {
-                var user = parseInt(prompt("Inserisci numero " + i + "di " + size))
-                userNumberList.push(user);
-            }
+                var user = parseInt(prompt("Inserisci numero " + i + "di " + size));
 
-            //confronto dei risultati
+                //validazione
+                if( !isNaN(user) ) {
+                    userNumberList.push(user);
+                }
+                else {
+                    alert("valore inserito non valido");
+                }
+            };
+
+
             for (var i = 0; i < userNumberList.length; i++) {
                 //numeri ok
                 if (numberList.includes(user[i])) {
@@ -64,26 +71,20 @@ $(document).ready(function() {
                 }
                 //numeri nope
                 else if (! numberList.includes(userNumberList[i] ) ) {
-                    nopeNumbers.push(userNumberList[i]);
+                    nopeNumbers.push(user[i]);
                 }
-            }
+            };
 
             //Risultato
             console.log("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
             console.log("Questi sono i numeri che hai inserito ", userNumberList);
-        
-
-            display.text("Tempo scaduto!");
+            display.text("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
         }
         else {
             display.text(seconds);
             seconds--;
         }
     }, 1000);
-
-    
-
-
     //end doc ready
 });
 
