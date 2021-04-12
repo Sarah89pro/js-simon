@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 
     //Countdown 30 secondi
-    var seconds = 3; //setInterval è in ms, quindi in background 30*1000
+    var seconds = 30; //setInterval è in ms, quindi in background 30*1000
 
     var interval = setInterval(function() {
 
