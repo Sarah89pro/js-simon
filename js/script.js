@@ -78,7 +78,7 @@ $(document).ready(function() {
             //Risultato
             console.log("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
             console.log("Questi sono i numeri che hai inserito ", userNumberList);
-            display.text("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
+            display.text("Tempo scaduto!");
         }
         else {
             display.text(seconds);
