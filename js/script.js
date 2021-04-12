@@ -5,6 +5,8 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 $(document).ready(function() {
 
+    //REFS
+
     //display in html
     var display = $(".display");
     
@@ -17,6 +19,13 @@ $(document).ready(function() {
     //array per contenere i numeri che l'utente ricorda
     var userNumberList = [];
 
+    //array per i numeri corrispondenti
+    var okNumbers = [];
+
+    //array per i numeri non corrispondenti
+    var nopeNumbers = [];
+
+
 
     //ciclo per ottenere i numeri random
     while (numberList.length < size) {
@@ -28,17 +37,41 @@ $(document).ready(function() {
     };
     console.log(numberList);
 
+
     //chiedi all'utente di memorizzare i numeri nell'array
-    alert("Ricorda questi cinque numeri! \n Ti diamo 30 secondi per memorizzarli " + numberList);
+    alert("Ricorda questi cinque numeri!\nTi diamo 30 secondi per memorizzarli\n" + numberList);
 
 
-    //Coutdown 30 secondi
-    var seconds = 30; //setInterval è in ms, quindi in background 30*1000
+    //Countdown 30 secondi
+    var seconds = 3; //setInterval è in ms, quindi in background 30*1000
 
-    
     var interval = setInterval(function() {
+
+        //quando il Countdown arriva a 0, c'è il prompt
         if (seconds === 0) {
             clearInterval(interval);
+            //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
+            for (var i = 1; i <= size; i++) {
+                var user = parseInt(prompt("Inserisci numero " + i + "di " + size))
+                userNumberList.push(user);
+            }
+
+            //confronto dei risultati
+            for (var i = 0; i < userNumberList.length; i++) {
+                //numeri ok
+                if (numberList.includes(user[i])) {
+                    okNumbers.push(user[i]);
+                }
+                //numeri nope
+                else if (! numberList.includes(userNumberList[i] ) ) {
+                    nopeNumbers.push(userNumberList[i]);
+                }
+            }
+
+            //Risultato
+            console.log("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
+            console.log("Questi sono i numeri che hai inserito ", userNumberList);
+        
 
             display.text("Tempo scaduto!");
         }
@@ -48,12 +81,14 @@ $(document).ready(function() {
         }
     }, 1000);
 
-    //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
     
 
 
     //end doc ready
 });
+
+
+
 
 /***********
  * UTILITY *
