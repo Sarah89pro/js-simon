@@ -25,17 +25,17 @@ $(document).ready(function() {
         if (! numberList.includes(number)) {
             numberList.push(number);
         }
-    }
+    };
     console.log(numberList);
+
     //chiedi all'utente di memorizzare i numeri nell'array
-    alert("Ricorda questi cinque numeri. \n Ti diamo 30 secondi per memorizzarli " + numberList);
+    alert("Ricorda questi cinque numeri! \n Ti diamo 30 secondi per memorizzarli " + numberList);
 
 
+    //Coutdown 30 secondi
+    var seconds = 30; //setInterval è in ms, quindi in background 30*1000
 
-    //dopo 30 secondi chiedi all'utente di inserire i numeri che ricorda, per 5 volte
-    var seconds = 30;
-
-    //Coutdown
+    
     var interval = setInterval(function() {
         if (seconds === 0) {
             clearInterval(interval);
@@ -46,7 +46,9 @@ $(document).ready(function() {
             display.text(seconds);
             seconds--;
         }
-    }, 1000)
+    }, 1000);
+
+    //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
     
 
 
