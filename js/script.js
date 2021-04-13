@@ -33,8 +33,11 @@ $(document).ready(function() {
     alert("Ricorda questi cinque numeri!\nTi diamo 30 secondi per memorizzarli\n" + numberList);
 
 
+
+
+
     //Countdown 30 secondi
-    var seconds = 30; //setInterval è in ms, quindi in background 30*1000
+    var seconds = 3; //setInterval è in ms, quindi in background 30*1000
 
     var interval = setInterval(function() {
 
@@ -45,23 +48,22 @@ $(document).ready(function() {
             //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
             var userNumbers = [];
 
-            while (user.length < size) {
-                var newUserNumber = parseInt(prompt ("Inserisci il " + (userNumbers.length + 1) + "numero") );
+            while (userNumbers.length < size) {
+                var newUserNumber = parseInt(prompt ("Inserisci il " + (userNumbers.length + 1) + " numero") );
 
-                while (isNan(newUserNumber) ) {
+                while (isNaN(newUserNumber) ) {
                     newUserNumber = parseInt(prompt ("Non valido! Inserisci il " + (userNumbers.length + 1) + "numero") );
                 }
-            
-            }
-            
-            //controllare chei numeri non siano già stati inseriti
-            if (! userNumbers.includes(newUserNumber) ) {
-                userNumbers.push(newUserNumber);
-            }
-            else {
-                alert ("Numero già inserito!");
-            }
 
+                //controllare chei numeri non siano già stati inseriti
+                if (! userNumbers.includes(newUserNumber) ) {
+                userNumbers.push(newUserNumber);
+                }
+                else {
+                alert ("Numero già inserito!");
+                }
+            }
+            
 
             //numeri ok
             var okNumbers = [];
@@ -73,7 +75,7 @@ $(document).ready(function() {
             }
 
             //Risultato
-            alert ("RISULTATI \nI numeri che dovevi ricordare " + numberList + "\nInumeri che hai inserito " + userNumbers + "\nI numeri che hai indovinato " + okNumbers + "\nComplimenti, ne hai indovinati " + okNumbers.length);
+            alert ("RISULTATI \nI numeri che dovevi ricordare " + numberList + "\nI numeri che hai inserito " + userNumbers + "\nI numeri che hai indovinato " + okNumbers + "\nComplimenti, ne hai indovinati " + okNumbers.length);
         }
         else {
             display.text(seconds);
