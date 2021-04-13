@@ -16,22 +16,13 @@ $(document).ready(function() {
     //array per contenere i numeri random
     var numberList = [];
 
-    //array per contenere i numeri che l'utente ricorda
-    var userNumberList = [];
-
-    //array per i numeri corrispondenti
-    var okNumbers = [];
-
-    //array per i numeri non corrispondenti
-    var nopeNumbers = [];
-
 
 
     //ciclo per ottenere i numeri random
     while (numberList.length < size) {
         var number = getRandomNumber (1, 100);
 
-        if (! numberList.includes(number)) {
+        if (! numberList.includes(number) ) {
             numberList.push(number);
         }
     };
@@ -50,35 +41,39 @@ $(document).ready(function() {
         //quando il Countdown arriva a 0, c'è il prompt
         if (seconds === 0) {
             clearInterval(interval);
+
             //Chiedi all'utente di inserire i numeri che ricorda, per 5 volte
-            for (var i = 1; i <= size; i++) {
-                var user = parseInt(prompt("Inserisci numero " + i + "di " + size));
+            var userNumbers = [];
 
-                //validazione
-                if( !isNaN(user) ) {
-                    userNumberList.push(user);
+            while (user.length < size) {
+                var newUserNumber = parseInt(prompt ("Inserisci il " + (userNumbers.length + 1) + "numero") );
+
+                while (isNan(newUserNumber) ) {
+                    newUserNumber = parseInt(prompt ("Non valido! Inserisci il " + (userNumbers.length + 1) + "numero") );
                 }
-                else {
-                    alert("valore inserito non valido");
-                }
-            };
+            
+            }
+            
+            //controllare chei numeri non siano già stati inseriti
+            if (! userNumbers.includes(newUserNumber) ) {
+                userNumbers.push(newUserNumber);
+            }
+            else {
+                alert ("Numero già inserito!");
+            }
 
 
-            for (var i = 0; i < userNumberList.length; i++) {
-                //numeri ok
-                if (numberList.includes(user[i])) {
-                    okNumbers.push(user[i]);
+            //numeri ok
+            var okNumbers = [];
+            for (var i = 0; i < userNumbers.length; i++) {
+
+                if(numberList.includes(userNumbers[i]) ) {
+                    okNumbers.push(userNumbers[i]);
                 }
-                //numeri nope
-                else if (! numberList.includes(userNumberList[i] ) ) {
-                    nopeNumbers.push(user[i]);
-                }
-            };
+            }
 
             //Risultato
-            console.log("Di ", size, " ne hai sbagliati solo ", nopeNumbers.length , " complimenti!");
-            console.log("Questi sono i numeri che hai inserito ", userNumberList);
-            display.text("Tempo scaduto!");
+            alert ("RISULTATI \nI numeri che dovevi ricordare " + numberList + "\nInumeri che hai inserito " + userNumbers + "\nI numeri che hai indovinato " + okNumbers + "\nComplimenti, ne hai indovinati " + okNumbers.length);
         }
         else {
             display.text(seconds);
